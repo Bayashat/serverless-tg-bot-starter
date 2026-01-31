@@ -1,4 +1,4 @@
-[ 🇬🇧 English ](README.md) | [ 🇰🇿 Қазақша ](docs/README_KK.md) | [ 🇷🇺 Русский ](docs/README_RU.md)
+[ 🇬🇧 English ](../README.md) | [ 🇰🇿 Қазақша ](README_KK.md) | [ 🇷🇺 Русский ](README_RU.md)
 
 
 # 🚀 Serverless Telegram Bot Starter
@@ -31,6 +31,15 @@ Telegram → API Gateway → Receiver Lambda → SQS Queue → Worker Lambda →
 
 Дәстүрлі VPS трафикке қарамастан айына $5-10 тұрады. Serverless арқылы сіз әр сұраныс (request) үшін төлейсіз. Пет-жобалар мен стартаптардың көбі үшін **AWS шотыңыз $0.00 болады** (Free Tier арқасында).
 
+## 🌟 Шынайы Мысал
+
+Бұл шаблонның продакшнда қалай жұмыс істейтіні қызық па?
+
+Осы шаблон негізінде жасалған **[Zerde Bot репозиторийін](https://github.com/Bayashat/zerde-serverless-bot)** қараңыз.
+Бұл **900-ден астам мүшесі бар IT қауымдастыққа** қызмет көрсететін ашық кодты (open-source) анти-спам бот.
+
+**Статус:** AWS Free Tier-де 24/7 тегін жұмыс істеп тұр.
+
 ## Архитектура
 
 ![Serverless Bot Architecture](../assets/architecture.png)
@@ -60,7 +69,7 @@ Telegram → API Gateway → Receiver Lambda → SQS Queue → Worker Lambda →
 
 ```bash
 # Репозиторийді клондау
-git clone [https://github.com/Bayashat/serverless-tg-bot-starter.git](https://github.com/Bayashat/serverless-tg-bot-starter.git)
+git clone https://github.com/Bayashat/serverless-tg-bot-starter.git
 cd serverless-tg-bot-starter
 
 # Тәуелділіктерді (dependencies) орнату
@@ -91,7 +100,7 @@ uv run cdk deploy -c env=dev
 Терминалдан WebhookApiUrl көшіріп алыңыз және оны тіркеңіз:
 
 ```bash
-# YOUR_API_URL орнына шыққан сілтемені қойыңыз
+# YOUR_API_URL мәнін және TELEGRAM_WEBHOOK_SECRET_TOKEN айнымалысын қолданыңыз
 curl -X POST "[https://api.telegram.org/bot](https://api.telegram.org/bot)<YOUR_BOT_TOKEN>/setWebhook" \
   -H "Content-Type: application/json" \
   -d '{"url": "YOUR_API_URL/webhook", "secret_token": "YOUR_SECRET_TOKEN"}'
@@ -139,8 +148,8 @@ chmod +x scripts/setup_oidc.sh
 
 ## 📚 Құжаттама
 
-- 📖 **[Әзірлеуші Нұсқаулығы](docs/developer_guide.md)**: : Handler жазу, Context объектісін қолдану.
-- 🚀 **[Орналастыру Нұсқаулығы](docs/deployment.md)**: CI/CD баптау, OIDC және мониторинг.
+- 📖 **[Әзірлеуші Нұсқаулығы](developer_guide.md)**: : Handler жазу, Context объектісін қолдану.
+- 🚀 **[Орналастыру Нұсқаулығы](deployment.md)**: CI/CD баптау, OIDC және мониторинг.
 
 ## 🤝 Жобаға Үлес Қосу (Contributing)
 

@@ -12,6 +12,7 @@ A production-ready template for hosting Telegram Bots on AWS using Serverless ar
 
 ## Why This Template?
 
+
 ### Async Architecture: The Game Changer
 
 Unlike traditional synchronous Lambda functions that timeout after 15 minutes, this template uses an **asynchronous, event-driven architecture**:
@@ -30,6 +31,15 @@ Telegram → API Gateway → Receiver Lambda → SQS Queue → Worker Lambda →
 ### Stop Paying for Idle VPS!
 
 Traditional VPS costs $5-10/month regardless of traffic. With Serverless, you pay per request. For most hobby bots and startups, **your AWS bill will be $0.00** thanks to the generous Free Tier.
+
+## 🌟 Real-World Example
+
+Curious about how this looks in production?
+
+Check out the **[Zerde Bot Repository](https://github.com/Bayashat/zerde-serverless-bot)**.
+It's an **open-source** anti-spam bot built with this exact template, currently serving a **900+ member IT community**.
+
+**Status:** Running 24/7 on AWS Free Tier ($0 cost).
 
 ## Architecture
 
@@ -98,7 +108,7 @@ Locate the WebhookApiUrl in the terminal output (e.g., https://xyz.execute-api.e
 # Replace YOUR_API_URL with the output from the previous step
 curl -X POST "https://api.telegram.org/bot<YOUR_BOT_TOKEN>/setWebhook" \
   -H "Content-Type: application/json" \
-  -d '{"url": "YOUR_API_URL/webhook", "secret_token": "TELEGRAM_WEBHOOK_SECRET_TOKEN"}'
+  -d '{"url": "YOUR_API_URL/webhook", "secret_token": "YOUR_SECRET_TOKEN"}'
 ```
 
 ## 👨‍💻 Professional Workflow
@@ -139,8 +149,8 @@ chmod +x scripts/setup_oidc.sh
 
 ## 📚 Documentation
 
-- 📖 **[Developer Guide](docs/developer_guide.md)**: How to write handlers, use the Context object, and add features.
-- 🚀 **[Deployment Guide](docs/deployment.md)**: Detailed CI/CD setup, OIDC explanation, and monitoring.
+- 📖 **[Developer Guide](developer_guide.md)**: How to write handlers, use the Context object, and add features.
+- 🚀 **[Deployment Guide](deployment.md)**: Detailed CI/CD setup, OIDC explanation, and monitoring.
 
 ## 🤝 Contributing
 

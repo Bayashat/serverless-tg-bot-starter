@@ -1,4 +1,4 @@
-[ 🇬🇧 English ](README.md) | [ 🇰🇿 Қазақша ](docs/README_KK.md) | [ 🇷🇺 Русский ](docs/README_RU.md)
+[ 🇬🇧 English ](../README.md) | [ 🇰🇿 Қазақша ](README_KK.md) | [ 🇷🇺 Русский ](README_RU.md)
 
 
 # 🚀 Serverless Telegram Bot Starter
@@ -32,6 +32,15 @@ Telegram → API Gateway → Receiver Lambda → SQS Queue → Worker Lambda →
 
 Традиционный VPS стоит $5-10/месяц независимо от трафика. С Serverless вы платите только за запросы. Для большинства пет-проектов и стартапов **ваш счет AWS составит $0.00** благодаря AWS Free Tier.
 
+## 🌟 Реальный Пример
+
+Хотите увидеть, как это выглядит в продакшене?
+
+Посмотрите репозиторий **[Zerde Bot](https://github.com/Bayashat/zerde-serverless-bot)**.
+Это **open-source** анти-спам бот, полностью созданный на этом шаблоне и обслуживающий **IT-сообщество из 900+ участников**.
+
+**Статус:** Работает 24/7 на AWS Free Tier (за $0).
+
 ## Архитектура
 
 ![Serverless Bot Architecture](../assets/architecture.png)
@@ -61,7 +70,7 @@ Telegram → API Gateway → Receiver Lambda → SQS Queue → Worker Lambda →
 
 ```bash
 # Клонировать репозиторий
-git clone [https://github.com/Bayashat/serverless-tg-bot-starter.git](https://github.com/Bayashat/serverless-tg-bot-starter.git)
+git clone https://github.com/Bayashat/serverless-tg-bot-starter.git
 cd serverless-tg-bot-starter
 
 # Установить зависимости
@@ -92,7 +101,7 @@ uv run cdk deploy -c env=dev
 Скопируйте WebhookApiUrl из вывода терминала и зарегистрируйте его:
 
 ```bash
-# Замените YOUR_API_URL на ссылку из вывода
+# Замените YOUR_API_URL на ссылку из вывода и используйте TELEGRAM_WEBHOOK_SECRET_TOKEN
 curl -X POST "[https://api.telegram.org/bot](https://api.telegram.org/bot)<YOUR_BOT_TOKEN>/setWebhook" \
   -H "Content-Type: application/json" \
   -d '{"url": "YOUR_API_URL/webhook", "secret_token": "YOUR_SECRET_TOKEN"}'
@@ -137,8 +146,8 @@ chmod +x scripts/setup_oidc.sh
 
 ## 📚 Документация
 
-- 📖 **[Руководство Разработчика](docs/developer_guide.md)**: Как писать хендлеры, использовать Context и добавлять фичи.
-- 🚀 **[Руководство по Деплою](docs/deployment.md)**: Настройка CI/CD, OIDC и мониторинг.
+- 📖 **[Руководство Разработчика](developer_guide.md)**: Как писать хендлеры, использовать Context и добавлять фичи.
+- 🚀 **[Руководство по Деплою](deployment.md)**: Настройка CI/CD, OIDC и мониторинг.
 
 ## 🤝 Вклад в Проект
 
