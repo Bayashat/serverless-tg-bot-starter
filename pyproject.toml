@@ -1,0 +1,31 @@
+[project]
+name = "serverless-tg-bot-starter"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+license = { text = "MIT" }
+authors = [
+    { name = "Bayashat", email = "bayashat.tokmukamet@gmail.com" }
+]
+
+keywords = [
+    "telegram-bot",
+    "aws-cdk",
+    "serverless",
+    "lambda",
+    "starter-template",
+    "python3.13"
+]
+dependencies = [
+    "aws-cdk-lib>=2.236.0",
+    "python-dotenv>=1.2.1",
+]
+
+[dependency-groups]
+dev = [
+    "aws-lambda-powertools>=3.24.0",
+    "boto3>=1.42.39",
+    "pre-commit>=4.5.1",
+    "requests>=2.32.5",
+]
