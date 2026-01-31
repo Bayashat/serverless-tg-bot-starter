@@ -33,25 +33,7 @@ Traditional VPS costs $5-10/month regardless of traffic. With Serverless, you pa
 
 ## Architecture
 
-```mermaid
-graph LR
-    User((User)) -- "Message" --> TG[Telegram Server]
-    TG -- "Webhook (HTTP)" --> API[API Gateway]
-
-    subgraph "AWS Serverless Cloud"
-        API -- "JSON" --> Receiver[λ Receiver]
-        Receiver -- "Raw Update" --> SQS[(SQS Queue)]
-        SQS -- "Batch" --> Worker[λ Worker]
-
-        Worker -- "Read/Write" --> DB[(DynamoDB)]
-        Worker -- "API Call" --> TG
-    end
-
-    style Receiver fill:#ff9900,stroke:#333,stroke-width:2px
-    style Worker fill:#ff9900,stroke:#333,stroke-width:2px
-    style SQS fill:#ff4f8b,stroke:#333,stroke-width:2px
-    style DB fill:#3d55ba,stroke:#333,stroke-width:2px,color:#fff
-```
+![Serverless Bot Architecture](assets/architecture.png)
 
 ## Cost Estimation
 
@@ -70,15 +52,15 @@ graph LR
 
 ### Prerequisites
 
-- AWS Account & AWS CLI configured.
-- Docker running (required for CDK bundling).
-- `uv` installed (The modern Python package manager).
+- **[AWS CLI](https://aws.amazon.com/cli/)** configured with your account.
+- **[Docker](https://www.docker.com/)** running (required for CDK bundling).
+- **[uv](https://github.com/astral-sh/uv)** installed (The modern Python package manager).
 
 ### 1. Initialize Project
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/serverless-tg-bot-starter.git
+git clone https://github.com/Bayashat/serverless-tg-bot-starter.git
 cd serverless-tg-bot-starter
 
 # Install dependencies strictly from lockfile
@@ -105,10 +87,11 @@ uv run cdk deploy -c env=dev
 
 ### 4. Connect Webhook
 
-Copy the API Gateway URL from the terminal output and register it:
+Locate the WebhookApiUrl in the terminal output (e.g., https://xyz.execute-api.eu-central-1.amazonaws.com).
 
 ```bash
-curl -X POST "https://api.telegram.org/bot<YOUR_BOT_TOKEN>/setWebhook" \
+# Replace YOUR_API_URL with the output from the previous step
+curl -X POST "[https://api.telegram.org/bot](https://api.telegram.org/bot)<YOUR_BOT_TOKEN>/setWebhook" \
   -H "Content-Type: application/json" \
   -d '{"url": "YOUR_API_URL/webhook", "secret_token": "YOUR_SECRET_TOKEN"}'
 ```

@@ -32,25 +32,7 @@ Telegram → API Gateway → Receiver Lambda → SQS Queue → Worker Lambda →
 
 ## Архитектура
 
-```mermaid
-graph LR
-    User((User)) -- "Message" --> TG[Telegram Server]
-    TG -- "Webhook (HTTP)" --> API[API Gateway]
-
-    subgraph "AWS Serverless Cloud"
-        API -- "JSON" --> Receiver[λ Receiver]
-        Receiver -- "Raw Update" --> SQS[(SQS Queue)]
-        SQS -- "Batch" --> Worker[λ Worker]
-
-        Worker -- "Read/Write" --> DB[(DynamoDB)]
-        Worker -- "API Call" --> TG
-    end
-
-    style Receiver fill:#ff9900,stroke:#333,stroke-width:2px
-    style Worker fill:#ff9900,stroke:#333,stroke-width:2px
-    style SQS fill:#ff4f8b,stroke:#333,stroke-width:2px
-    style DB fill:#3d55ba,stroke:#333,stroke-width:2px,color:#fff
-```
+![Serverless Bot Architecture](../assets/architecture.png)
 
 ## Құн Бағалауы
 
