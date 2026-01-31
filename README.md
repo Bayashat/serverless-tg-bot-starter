@@ -72,12 +72,17 @@ uv sync
 ```bash
 # Generate a secure secret token and create .env
 echo "TELEGRAM_BOT_TOKEN=your_token_from_botfather" > .env
+
+# Generate a secure secret token for the webhook
 echo "TELEGRAM_WEBHOOK_SECRET_TOKEN=$(openssl rand -hex 32)" >> .env
 ```
 
 ### 3. Deploy (Local Dev)
 
 ```bash
+# Navigate to the infra directory
+cd infra
+
 # Bootstrap CDK (only needed once per AWS account/region)
 uv run cdk bootstrap
 
@@ -91,9 +96,9 @@ Locate the WebhookApiUrl in the terminal output (e.g., https://xyz.execute-api.e
 
 ```bash
 # Replace YOUR_API_URL with the output from the previous step
-curl -X POST "[https://api.telegram.org/bot](https://api.telegram.org/bot)<YOUR_BOT_TOKEN>/setWebhook" \
+curl -X POST "https://api.telegram.org/bot<YOUR_BOT_TOKEN>/setWebhook" \
   -H "Content-Type: application/json" \
-  -d '{"url": "YOUR_API_URL/webhook", "secret_token": "YOUR_SECRET_TOKEN"}'
+  -d '{"url": "YOUR_API_URL/webhook", "secret_token": "TELEGRAM_WEBHOOK_SECRET_TOKEN"}'
 ```
 
 ## 👨‍💻 Professional Workflow
@@ -123,6 +128,9 @@ We use AWS OIDC (OpenID Connect) for passwordless, secure deployments.
 Run the setup script:
 
 ```bash
+# Make the script executable
+chmod +x scripts/setup_oidc.sh
+
 # Usage: ./scripts/setup_oidc.sh <github_user>/<repo_name>
 ./scripts/setup_oidc.sh yourname/serverless-tg-bot-starter
 ```

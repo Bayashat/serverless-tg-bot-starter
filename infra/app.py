@@ -1,6 +1,5 @@
 from aws_cdk import App, Environment
-
-from infra.stack import TelegramBotStack
+from stack import TelegramBotStack
 
 app = App()
 
