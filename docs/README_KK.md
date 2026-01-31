@@ -53,7 +53,7 @@ Telegram → API Gateway → Receiver Lambda → SQS Queue → Worker Lambda →
 
 ```bash
 # 1. Клонирлау және баптау
-git clone https://github.com/yourusername/serverless-tg-bot-starter.git
+git clone https://github.com/Bayashat/serverless-tg-bot-starter.git
 cd serverless-tg-bot-starter
 uv sync
 
