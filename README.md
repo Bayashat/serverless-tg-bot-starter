@@ -12,6 +12,7 @@ A production-ready template for hosting Telegram Bots on AWS using Serverless ar
 
 ## Why This Template?
 
+
 ### Async Architecture: The Game Changer
 
 Unlike traditional synchronous Lambda functions that timeout after 15 minutes, this template uses an **asynchronous, event-driven architecture**:
@@ -30,6 +31,15 @@ Telegram → API Gateway → Receiver Lambda → SQS Queue → Worker Lambda →
 ### Stop Paying for Idle VPS!
 
 Traditional VPS costs $5-10/month regardless of traffic. With Serverless, you pay per request. For most hobby bots and startups, **your AWS bill will be $0.00** thanks to the generous Free Tier.
+
+## 🌟 Real-World Example
+
+Curious about how this looks in production?
+
+Check out the **[Zerde Bot Repository](https://github.com/Bayashat/zerde-serverless-bot)**.
+It's an **open-source** anti-spam bot built with this exact template, currently serving a **900+ member IT community**.
+
+**Status:** Running 24/7 on AWS Free Tier ($0 cost).
 
 ## Architecture
 
@@ -72,12 +82,17 @@ uv sync
 ```bash
 # Generate a secure secret token and create .env
 echo "TELEGRAM_BOT_TOKEN=your_token_from_botfather" > .env
+
+# Generate a secure secret token for the webhook
 echo "TELEGRAM_WEBHOOK_SECRET_TOKEN=$(openssl rand -hex 32)" >> .env
 ```
 
 ### 3. Deploy (Local Dev)
 
 ```bash
+# Navigate to the infra directory
+cd infra
+
 # Bootstrap CDK (only needed once per AWS account/region)
 uv run cdk bootstrap
 
@@ -91,7 +106,7 @@ Locate the WebhookApiUrl in the terminal output (e.g., https://xyz.execute-api.e
 
 ```bash
 # Replace YOUR_API_URL with the output from the previous step
-curl -X POST "[https://api.telegram.org/bot](https://api.telegram.org/bot)<YOUR_BOT_TOKEN>/setWebhook" \
+curl -X POST "https://api.telegram.org/bot<YOUR_BOT_TOKEN>/setWebhook" \
   -H "Content-Type: application/json" \
   -d '{"url": "YOUR_API_URL/webhook", "secret_token": "YOUR_SECRET_TOKEN"}'
 ```
@@ -123,6 +138,9 @@ We use AWS OIDC (OpenID Connect) for passwordless, secure deployments.
 Run the setup script:
 
 ```bash
+# Make the script executable
+chmod +x scripts/setup_oidc.sh
+
 # Usage: ./scripts/setup_oidc.sh <github_user>/<repo_name>
 ./scripts/setup_oidc.sh yourname/serverless-tg-bot-starter
 ```
@@ -131,8 +149,8 @@ Run the setup script:
 
 ## 📚 Documentation
 
-- 📖 **[Developer Guide](docs/developer_guide.md)**: How to write handlers, use the Context object, and add features.
-- 🚀 **[Deployment Guide](docs/deployment.md)**: Detailed CI/CD setup, OIDC explanation, and monitoring.
+- 📖 **[Developer Guide](developer_guide.md)**: How to write handlers, use the Context object, and add features.
+- 🚀 **[Deployment Guide](deployment.md)**: Detailed CI/CD setup, OIDC explanation, and monitoring.
 
 ## 🤝 Contributing
 
